@@ -94,28 +94,46 @@ with st.sidebar:
     # Chatbot section
     st.markdown("## 💬 Ask About Brain MRIs")
     st.markdown('<div class="chatbot-box">', unsafe_allow_html=True)
-    # Use API key from Streamlit secrets
+    # Attempt to use API key from Streamlit secrets
+    api_key = None
     try:
         api_key = st.secrets["GEMINI_API_KEY"]
         genai.configure(api_key=api_key)
-    except (KeyError, Exception) as e:
-        print(f"Error configuring Gemini API: {e}")
+        print("Successfully configured Gemini API with secrets key.")  # For debugging
+    except KeyError:
+        print("GEMINI_API_KEY not found in Streamlit secrets.")
+        st.info("Chatbot is unavailable. Please ensure the Gemini API key is set in Streamlit secrets.")
+    except Exception as e:
+        print(f"Error configuring Gemini API with secrets: {str(e)}")
         print(traceback.format_exc())
-        st.info("Chatbot is unavailable. Please ensure the Gemini API key is correctly set in Streamlit secrets.")
-        api_key = None
+        st.info("Chatbot is unavailable. Please ensure the Gemini API key is valid in Streamlit secrets.")
+    
+    # Fallback: Allow manual API key input for debugging
+    if not api_key:
+        api_key = st.text_input("Enter Gemini API Key (optional, for debugging)", type="password")
+        if api_key:
+            try:
+                genai.configure(api_key=api_key)
+                print("Successfully configured Gemini API with manual key.")  # For debugging
+            except Exception as e:
+                print(f"Error configuring Gemini API with manual key: {str(e)}")
+                print(traceback.format_exc())
+                st.info("Invalid API key entered. Please check and try again.")
+                api_key = None
     
     # Chat input and response
     if api_key:
         user_question = st.text_input("Ask a question about brain MRIs or tumors:")
         if user_question:
-            try:
-                model = genai.GenerativeModel('gemini-1.5-flash')
-                response = model.generate_content(user_question)
-                st.markdown(f"**Answer:** {response.text}")
-            except Exception as e:
-                print(f"Error generating chatbot response: {e}")
-                print(traceback.format_exc())
-                st.info("Unable to generate a response. Please try again or check the API configuration.")
+            with st.spinner("Generating response..."):
+                try:
+                    model = genai.GenerativeModel('gemini-1.5-flash')
+                    response = model.generate_content(user_question)
+                    st.markdown(f"**Answer:** {response.text}")
+                except Exception as e:
+                    print(f"Error generating chatbot response: {str(e)}")
+                    print(traceback.format_exc())
+                    st.info("Unable to generate a response. Please try again or check the API configuration.")
     st.markdown('</div>', unsafe_allow_html=True)
 
 # Main content
