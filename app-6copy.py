@@ -12,7 +12,11 @@ import google.generativeai as genai
 from dotenv import load_dotenv
 
 # Load environment variables from .env file
-load_dotenv()
+import streamlit as st
+import google.generativeai as genai
+
+genai.configure(api_key=st.secrets["GEMINI_API_KEY"])
+
 
 # Suppress TensorFlow warnings
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'  # 0=all, 1=info, 2=warning, 3=error
