@@ -1,6 +1,4 @@
-Here’s a refined and professional version of your README for **TumorVision**, optimized for clarity, structure, and presentation:
 
----
 
 # 🧠 TumorVision: AI-Powered Brain MRI Analysis with Generative AI
 
@@ -219,6 +217,3 @@ For questions or suggestions, open a GitHub Issue or connect with us during the 
 > **TumorVision**: Where deep learning meets generative AI to illuminate brain MRI analysis.
 > Explore, learn, and contribute at [syahra712/pec-hackathon](https://github.com/syahra712/pec-hackathon)!
 
----
-
-Let me know if you’d like a Markdown-rendered PDF version, or want help deploying on Streamlit Cloud!
