@@ -29,7 +29,7 @@
 
 ## 📹 Demo
 
-Try TumorVision live on [Streamlit Cloud](#) *(Replace this with your deployed URL)*
+Try TumorVision live on [[Streamlit Cloud](https://pec-hackathon-tumorvision.streamlit.app)](#) 
 Or run it locally using the steps below.
 
 ---
