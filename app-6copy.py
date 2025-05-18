@@ -9,14 +9,6 @@ import logging
 import io
 import traceback
 import google.generativeai as genai
-from dotenv import load_dotenv
-
-# Load environment variables from .env file
-import streamlit as st
-import google.generativeai as genai
-
-genai.configure(api_key=st.secrets["GEMINI_API_KEY"])
-
 
 # Suppress TensorFlow warnings
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'  # 0=all, 1=info, 2=warning, 3=error
@@ -102,28 +94,28 @@ with st.sidebar:
     # Chatbot section
     st.markdown("## 💬 Ask About Brain MRIs")
     st.markdown('<div class="chatbot-box">', unsafe_allow_html=True)
-    # Load Gemini API key from environment variable
-    api_key = os.getenv("GEMINI_API_KEY")
-    if api_key:
-        try:
-            genai.configure(api_key=api_key)
-        except Exception as e:
-            print(f"Error configuring Gemini API: {e}")
-            st.info("Chatbot is unavailable due to an issue with the API configuration.")
-    else:
-        st.info("Chatbot is unavailable. Please ensure the GEMINI_API_KEY is set in the environment.")
+    # Use API key from Streamlit secrets
+    try:
+        api_key = st.secrets["GEMINI_API_KEY"]
+        genai.configure(api_key=api_key)
+    except (KeyError, Exception) as e:
+        print(f"Error configuring Gemini API: {e}")
+        print(traceback.format_exc())
+        st.info("Chatbot is unavailable. Please ensure the Gemini API key is correctly set in Streamlit secrets.")
+        api_key = None
     
     # Chat input and response
-    user_question = st.text_input("Ask a question about brain MRIs or tumors:")
-    if user_question and api_key:
-        try:
-            model = genai.GenerativeModel('gemini-1.5-flash')
-            response = model.generate_content(user_question)
-            st.markdown(f"**Answer:** {response.text}")
-        except Exception as e:
-            print(f"Error generating chatbot response: {e}")
-            print(traceback.format_exc())
-            st.info("Unable to generate a response. Please try again later.")
+    if api_key:
+        user_question = st.text_input("Ask a question about brain MRIs or tumors:")
+        if user_question:
+            try:
+                model = genai.GenerativeModel('gemini-1.5-flash')
+                response = model.generate_content(user_question)
+                st.markdown(f"**Answer:** {response.text}")
+            except Exception as e:
+                print(f"Error generating chatbot response: {e}")
+                print(traceback.format_exc())
+                st.info("Unable to generate a response. Please try again or check the API configuration.")
     st.markdown('</div>', unsafe_allow_html=True)
 
 # Main content
