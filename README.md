@@ -1,134 +1,224 @@
-TumorVision: AI-Powered Brain MRI Analysis with Generative AI
+Here’s a refined and professional version of your README for **TumorVision**, optimized for clarity, structure, and presentation:
 
-TumorVision is an educational web application that leverages deep learning and generative AI to analyze brain MRI scans. Built for the PEC Hackathon, it classifies MRIs into four categories—Glioma, Meningioma, Pituitary Tumor, or No Tumor—using a TensorFlow CNN. The app features Grad-CAM visualizations for explainable AI, a Gemini API-powered chatbot for interactive Q&A, and detailed tumor information tabs, making it a valuable tool for medical students, researchers, and AI enthusiasts.
-Disclaimer: TumorVision is for educational purposes only and should not be used for medical diagnosis. Always consult a qualified healthcare provider for medical advice.
-Features
+---
 
-MRI Classification: Upload a brain MRI (JPG, JPEG, PNG) to classify it into Glioma, Meningioma, Pituitary Tumor, or No Tumor, with confidence scores and a bar chart of class probabilities.
-Grad-CAM Visualization: Uses Gradient-weighted Class Activation Mapping to generate heatmaps highlighting regions influencing the model’s prediction, with an adjustable intensity slider for customizable overlays.
-Generative AI Chatbot: Powered by the Gemini API (gemini-1.5-flash), answers questions about brain MRIs, tumors, or the app in real time, acting as an on-demand educational tutor.
-Tumor Information Tabs: Provides detailed descriptions of each tumor type and normal brain anatomy, including characteristics and MRI appearances.
-User-Friendly Interface: Built with Streamlit, featuring a responsive layout, custom CSS styling, and silent error handling for a seamless experience.
+# 🧠 TumorVision: AI-Powered Brain MRI Analysis with Generative AI
 
-Demo
-Check out TumorVision in action on Streamlit Cloud (replace with your deployed URL) or run it locally to explore its features.
-Installation
-Prerequisites
+**TumorVision** is an educational web application that utilizes deep learning and generative AI to analyze brain MRI scans. Developed for the **PEC Hackathon**, the app classifies MRIs into four categories—**Glioma**, **Meningioma**, **Pituitary Tumor**, or **No Tumor**—using a custom-built TensorFlow CNN model. It includes Grad-CAM visualizations for model explainability and an AI-powered chatbot for interactive learning.
 
-Python 3.8+
-Git
-A valid Gemini API key from Google Cloud Console
-A brain MRI classification model (brainCNN.h5, optional; the app includes a placeholder CNN if not provided)
+> ⚠️ **Disclaimer**: TumorVision is intended **for educational purposes only** and should **not be used for medical diagnosis**. Always consult a certified healthcare professional for medical concerns.
 
-Setup
+---
 
-Clone the Repository:
-git clone https://github.com/syahra712/pec-hackathon.git
-cd pec-hackathon
+## 🚀 Features
 
+* **🧠 MRI Classification**
+  Upload brain MRI images (JPG, JPEG, PNG) to classify them into one of four categories. Includes confidence scores and a bar chart of class probabilities.
 
-Install Dependencies:
-pip install -r requirements.txt
+* **🔥 Grad-CAM Visualization**
+  Gradient-weighted Class Activation Mapping (Grad-CAM) highlights regions of the MRI that most influenced the model’s prediction. Customize intensity using an interactive slider.
 
-The requirements.txt includes:
-streamlit
-tensorflow
-numpy
-pillow
-matplotlib
-google-generativeai
+* **💬 Generative AI Chatbot**
+  Powered by **Gemini API (gemini-1.5-flash)**, this chatbot answers real-time questions about brain tumors, MRIs, and the application—making it a virtual tutor for learners.
 
+* **📚 Tumor Information Tabs**
+  Detailed educational content for each tumor type and normal brain anatomy, including common characteristics and typical MRI appearances.
 
-Configure the Gemini API Key:
+* **🎨 Streamlit-Based UI**
+  Built with Streamlit for a smooth, responsive experience. Includes custom CSS styling and robust error handling for a seamless user journey.
 
-Create a .streamlit/secrets.toml file in the project root:GEMINI_API_KEY = "your_valid_gemini_api_key_here"
+---
 
+## 📹 Demo
 
-Alternatively, set the key in Streamlit Cloud’s secrets management for cloud deployment.
-Obtain a key from Google Cloud Console, ensuring the Generative Language API is enabled.
+Try TumorVision live on [Streamlit Cloud](#) *(Replace this with your deployed URL)*
+Or run it locally using the steps below.
 
+---
 
-(Optional) Add Trained Model:
+## 🔧 Installation & Setup
 
-Place your trained brainCNN.h5 model in the project root. If absent, the app uses a placeholder CNN for demonstration.
+### ✅ Prerequisites
 
+* Python 3.8+
+* Git
+* Gemini API Key (get it from Google Cloud Console)
+* (Optional) A trained brain MRI model (`brainCNN.h5`)
 
+---
 
-Running Locally
+### 🛠️ Steps
+
+1. **Clone the Repository**
+
+   ```bash
+   git clone https://github.com/syahra712/pec-hackathon.git
+   cd pec-hackathon
+   ```
+
+2. **Install Dependencies**
+
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+   `requirements.txt` includes:
+
+   * `streamlit`
+   * `tensorflow`
+   * `numpy`
+   * `pillow`
+   * `matplotlib`
+   * `google-generativeai`
+
+3. **Configure Gemini API Key**
+
+   * Create a `.streamlit/secrets.toml` file:
+
+     ```toml
+     GEMINI_API_KEY = "your_valid_gemini_api_key_here"
+     ```
+
+   * Or add it via Streamlit Cloud secrets management.
+
+4. **(Optional) Add a Trained Model**
+
+   * Place your trained `brainCNN.h5` in the project root.
+   * If absent, a placeholder CNN will be used for demo purposes.
+
+---
+
+## 💻 Running Locally
+
+```bash
 streamlit run app-6copy.py
+```
 
-Open http://localhost:8501 in your browser to view the app.
-Deploying on Streamlit Cloud
+Visit [http://localhost:8501](http://localhost:8501) to access the app in your browser.
 
-Push the repository to GitHub.
-Create a Streamlit Cloud account and link your repository.
-Set GEMINI_API_KEY in Streamlit Cloud’s secrets settings.
-Deploy the app, specifying app-6copy.py as the main script.
+---
 
-Usage
+## ☁️ Deployment on Streamlit Cloud
 
-Upload an MRI: In the left column, upload a brain MRI image (JPG, JPEG, PNG).
-View Prediction: The right column displays the predicted class (e.g., “Glioma”), confidence score, and a bar chart of class probabilities.
-Explore Grad-CAM: Adjust the heatmap intensity slider to see which regions influenced the prediction, with red/yellow areas indicating high influence and blue areas low influence.
-Ask the Chatbot: In the sidebar, enter questions like “What is a pituitary tumor?” to get instant, AI-generated answers.
-Learn About Tumors: Navigate to the “About Brain Tumors” tabs for detailed information on each class.
+1. Push this repository to your GitHub.
+2. Create an account on [Streamlit Cloud](https://streamlit.io/cloud).
+3. Link your GitHub repo and deploy the app.
+4. Set your `GEMINI_API_KEY` in **Streamlit Secrets**.
+5. Specify `app-6copy.py` as the main script.
 
-Technical Details
+---
 
-Framework: Streamlit for the front-end, TensorFlow for the CNN, Google Gemini API for the chatbot.
-Model Architecture: A CNN with three convolutional layers (16, 32, 64 filters), max-pooling, global average pooling, and dense layers (128 units, 4-class softmax output).
-Grad-CAM: Generates heatmaps using gradients from the last convolutional layer, resized with OpenCV or SciPy, and visualized with Matplotlib.
-Chatbot: Uses gemini-1.5-flash for natural language responses, configured via Streamlit secrets for secure API access.
-Input Processing: Resizes images to 224x224 pixels, normalizes to [0,1], and converts to RGB (handles grayscale/RGBA).
-Error Handling: Suppresses TensorFlow warnings, hides Streamlit exceptions, and logs errors silently to the console.
-Deployment: Supports local and cloud deployment, with @st.cache_resource for optimized model loading and CPU-based inference.
+## 🧪 How to Use
 
-Project Structure
+1. **Upload an MRI:** Upload a JPG/JPEG/PNG scan in the sidebar.
+2. **Get Predictions:** View the predicted class, confidence, and bar chart.
+3. **Visualize with Grad-CAM:** Use the slider to adjust heatmap overlay.
+4. **Ask the Chatbot:** Get answers to questions like “What is a glioma?”
+5. **Learn About Tumors:** Browse the tumor tabs for in-depth descriptions.
+
+---
+
+## ⚙️ Technical Overview
+
+| Component               | Description                                                                 |
+| ----------------------- | --------------------------------------------------------------------------- |
+| **Frontend**            | Built with Streamlit (custom CSS + responsive layout)                       |
+| **CNN Model**           | 3 Conv layers (16, 32, 64), MaxPooling, GAP, Dense (128), Softmax (4-class) |
+| **Grad-CAM**            | Uses gradients from the last conv layer, rendered with Matplotlib           |
+| **Chatbot**             | Powered by `gemini-1.5-flash`, using Streamlit secrets                      |
+| **Image Preprocessing** | Resizes to 224x224, normalizes, converts to RGB (handles grayscale/RGBA)    |
+| **Caching**             | `@st.cache_resource` for optimized model loading                            |
+| **Error Handling**      | TensorFlow warnings suppressed; Streamlit errors hidden                     |
+
+---
+
+## 📁 Project Structure
+
+```
 pec-hackathon/
-├── app-6copy.py              # Main Streamlit application
-├── requirements.txt          # Python dependencies
+├── app-6copy.py            # Main Streamlit application
+├── requirements.txt        # Python dependencies
 ├── .streamlit/
-│   └── secrets.toml          # Gemini API key (not tracked)
-├── brainCNN.h5               # Trained model (optional)
-└── README.md                 # This file
+│   └── secrets.toml        # Gemini API key (not tracked)
+├── brainCNN.h5             # Trained CNN model (optional)
+└── README.md               # Project documentation
+```
 
-Contributing
-We welcome contributions to enhance TumorVision! To contribute:
+---
 
-Fork the repository.
-Create a feature branch (git checkout -b feature/your-feature).
-Commit changes (git commit -m "Add your feature").
-Push to the branch (git push origin feature/your-feature).
-Open a pull request.
+## 🧑‍💻 Contributing
 
-Potential enhancements:
+We welcome contributions to enhance **TumorVision**!
 
-Integrate pre-trained models (e.g., ResNet) for improved accuracy.
-Add chat history to the chatbot for context-aware responses.
-Support multi-sequence MRI analysis (e.g., T1, T2, FLAIR).
-Include sample MRI images for demo purposes.
+To contribute:
 
-Troubleshooting
+1. Fork this repo.
+2. Create a feature branch:
 
-Gemini API Key Error: Ensure GEMINI_API_KEY is set in .streamlit/secrets.toml or Streamlit Cloud secrets. Verify the key in Google Cloud Console and enable the Generative Language API.
-Model Loading: If brainCNN.h5 is missing, the app uses a placeholder CNN. Place a trained model in the root directory.
-Dependencies: Run pip install -r requirements.txt in a virtual environment to avoid conflicts.
-Logs: Check console logs for errors (e.g., “GEMINI_API_KEY not found”). Test the API key with:import google.generativeai as genai
+   ```bash
+   git checkout -b feature/your-feature
+   ```
+3. Commit your changes:
+
+   ```bash
+   git commit -m "Add your feature"
+   ```
+4. Push to GitHub:
+
+   ```bash
+   git push origin feature/your-feature
+   ```
+5. Open a pull request.
+
+### 💡 Potential Enhancements
+
+* Integrate pre-trained CNNs (e.g., ResNet, EfficientNet)
+* Add chat history support for the chatbot
+* Support multi-sequence MRI scans (T1, T2, FLAIR)
+* Include sample images for users to explore
+
+---
+
+## 🛠️ Troubleshooting
+
+| Issue                        | Solution                                                                             |
+| ---------------------------- | ------------------------------------------------------------------------------------ |
+| **Gemini API Error**         | Ensure `GEMINI_API_KEY` is correctly set and API is enabled in Google Cloud Console. |
+| **Model Not Loading**        | Add a valid `brainCNN.h5` file in the root directory.                                |
+| **Dependencies Not Working** | Use a virtual environment and reinstall with `pip install -r requirements.txt`.      |
+| **API Key Test**             |                                                                                      |
+
+```python
+import google.generativeai as genai
 genai.configure(api_key="your_key")
 model = genai.GenerativeModel('gemini-1.5-flash')
 print(model.generate_content("Test").text)
+```
 
+---
 
+## 📄 License
 
-License
-This project is licensed under the MIT License. See the LICENSE file for details.
-Acknowledgments
+This project is licensed under the **MIT License**.
+See the [LICENSE](./LICENSE) file for details.
 
-Built for the PEC Hackathon by syahra712.
-Powered by Streamlit, TensorFlow, and Google’s Gemini API.
-Inspired by the potential of GenAI to advance healthcare education.
+---
 
-Contact
-For questions or feedback, reach out via GitHub Issues or connect with us at the hackathon!
+## 🙏 Acknowledgments
 
-TumorVision: Where deep learning meets generative AI to illuminate brain MRI analysis. Explore, learn, and contribute at syahra712/pec-hackathon!
+* Built for **PEC Hackathon** by [@syahra712](https://github.com/syahra712)
+* Powered by **Streamlit**, **TensorFlow**, and **Google’s Gemini API**
+* Inspired by the promise of **Generative AI** in medical education
+
+---
+
+## 📬 Contact
+
+For questions or suggestions, open a GitHub Issue or connect with us during the hackathon!
+
+> **TumorVision**: Where deep learning meets generative AI to illuminate brain MRI analysis.
+> Explore, learn, and contribute at [syahra712/pec-hackathon](https://github.com/syahra712/pec-hackathon)!
+
+---
+
+Let me know if you’d like a Markdown-rendered PDF version, or want help deploying on Streamlit Cloud!
